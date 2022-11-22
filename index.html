@@ -76,7 +76,7 @@
 		  requests: [
 		      {
 			  features: {
-			      type: 'LABEL_DETECTION'
+			      type: 'DOCUMENT_TEXT_DETECTION'
 			  },
 			  image: {
 			      // have to extract only the image data from dataURL
@@ -91,15 +91,15 @@
 	      // Simply output the response
 	      console.log(json);
 	      results.innerHTML = '';
-	      json.responses[0].labelAnnotations.forEach( annotation => {
+	      json.responses[0].textAnnotations.forEach( annotation => {
 		  let description = document.createElement('span');
-		  let score = document.createElement('span');
+		 
 
 		  let div = document.createElement('div');
-		  description.innerText = annotation.description;
-		  score.innerText = annotation.score;
-
-		  div.append(description,score);
+		  description.innerHTML = `
+			<li> ${annotation.description}</li>
+		  `
+		  div.append(description);
 
 		  results.append(div);
 	      });
